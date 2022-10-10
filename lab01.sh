@@ -1,0 +1,1 @@
+cd lab01 && make compile && make run && cd ..
