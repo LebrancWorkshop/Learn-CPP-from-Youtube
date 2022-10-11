@@ -1,3 +1,5 @@
+// Lab 02: Basic Function and Operator Practice. 
+
 #include <iostream>
 
 int add(int a, int b)
