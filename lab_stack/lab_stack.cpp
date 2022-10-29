@@ -10,10 +10,10 @@ class Stack
 	public:
 		Stack(int size);
 		void push(int number);
-		// int pop();
-		// int peak();
+		int pop();
+		int peak();
 		bool is_stackoverflow();
-		// bool is_empty();
+		bool is_empty();
 		void display();
 };
 
@@ -21,7 +21,7 @@ Stack::Stack(int size)
 {
 	this->size = size;
 	this->top = -1;
-	this->data = new int[top];
+	this->data = new int[size];
 }
 
 void Stack::push(int number)

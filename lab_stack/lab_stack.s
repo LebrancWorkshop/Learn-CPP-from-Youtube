@@ -13,13 +13,13 @@ __ZN5StackC2Ei:                         ; @_ZN5StackC2Ei
 	.cfi_offset w29, -16
 	stur	x0, [x29, #-8]
 	stur	w1, [x29, #-12]
-	ldur	x8, [x29, #-8]
-	str	x8, [sp, #8]                    ; 8-byte Folded Spill
-	ldur	w9, [x29, #-12]
-	str	w9, [x8]
-	mov	w9, #-1
-	str	w9, [x8, #4]
-	ldrsw	x8, [x8, #4]
+	ldur	x9, [x29, #-8]
+	str	x9, [sp, #8]                    ; 8-byte Folded Spill
+	ldur	w8, [x29, #-12]
+	str	w8, [x9]
+	mov	w8, #-1
+	str	w8, [x9, #4]
+	ldursw	x8, [x29, #-12]
 	mov	x10, #4
 	umulh	x9, x8, x10
 	mul	x8, x8, x10
