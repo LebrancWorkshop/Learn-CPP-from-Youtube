@@ -1,5 +1,4 @@
 #include <iostream>
-// using namespace std;
 
 class Stack
 {
@@ -12,6 +11,7 @@ class Stack
 		void push(int number);
 		int pop();
 		int peak();
+		int len();
 		bool is_stackoverflow();
 		bool is_empty();
 		void display();
@@ -37,9 +37,55 @@ void Stack::push(int number)
 	}
 }
 
+int Stack::pop()
+{
+	if(this->is_empty())
+	{
+		std::cout << "Stack is empty!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		int temp = this->data[this->top];
+		this->data[this->top] = 0;
+		this->top--;
+		return temp;
+	}
+}
+
+int Stack::peak()
+{
+	if(this->is_empty())
+	{
+		std::cout << "Stack is empty!" << std::endl;
+		return -1;
+	}
+	else
+	{
+		return this->data[this->top];
+	}
+}
+
+int Stack::len()
+{
+	return this->top + 1;
+}
+
 bool Stack::is_stackoverflow()
 {
 	if(this->top == this->size - 1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Stack::is_empty()
+{
+	if(this->top == -1)
 	{
 		return true;
 	}
@@ -62,6 +108,10 @@ int main()
 {
 	Stack stack(10);
 	stack.push(10);
+	stack.push(20);
+	std::cout << stack.len() << std::endl;
+	stack.display();
+	std::cout << stack.pop() << std::endl;
 	stack.display();
 	return 0;
 }
