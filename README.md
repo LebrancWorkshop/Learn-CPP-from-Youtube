@@ -22,6 +22,6 @@ And it will contain the result of both C++ Code and generate Assembly Code from 
 
 You can just run by use this script below.
 
-"""
+```bash
 sh main.sh <folder_name_that_you_want_to_run>
-"""
+```
