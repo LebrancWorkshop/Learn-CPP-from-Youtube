@@ -270,15 +270,17 @@ __ZN5Queue7is_fullEv:                   ; @_ZN5Queue7is_fullEv
 __ZN5Queue7dequeueEv:                   ; @_ZN5Queue7dequeueEv
 	.cfi_startproc
 ; %bb.0:
-	sub	sp, sp, #64
-	stp	x29, x30, [sp, #48]             ; 16-byte Folded Spill
-	add	x29, sp, #48
+	sub	sp, sp, #48
+	stp	x29, x30, [sp, #32]             ; 16-byte Folded Spill
+	add	x29, sp, #32
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
-	stur	x0, [x29, #-16]
-	ldur	x0, [x29, #-16]
-	str	x0, [sp, #8]                    ; 8-byte Folded Spill
+	str	x0, [sp, #16]
+	ldr	x0, [sp, #16]
+	str	x0, [sp]                        ; 8-byte Folded Spill
+	mov	w8, #-1
+	str	w8, [sp, #12]
 	bl	__ZN5Queue8is_emptyEv
 	tbz	w0, #0, LBB8_2
 	b	LBB8_1
@@ -293,74 +295,55 @@ LBB8_1:
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
 	mov	w8, #-1
 	stur	w8, [x29, #-4]
-	b	LBB8_10
+	b	LBB8_8
 LBB8_2:
-	ldr	x0, [sp, #8]                    ; 8-byte Folded Reload
-	mov	w8, #-1
-	str	w8, [sp, #24]
-	bl	__ZN5Queue8is_emptyEv
-	tbz	w0, #0, LBB8_4
-	b	LBB8_3
-LBB8_3:
-	adrp	x0, __ZNSt3__14coutE@GOTPAGE
-	ldr	x0, [x0, __ZNSt3__14coutE@GOTPAGEOFF]
-	adrp	x1, l_.str.4@PAGE
-	add	x1, x1, l_.str.4@PAGEOFF
-	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
-	adrp	x1, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGE
-	ldr	x1, [x1, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGEOFF]
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	b	LBB8_9
-LBB8_4:
-	ldr	x8, [sp, #8]                    ; 8-byte Folded Reload
+	ldr	x8, [sp]                        ; 8-byte Folded Reload
 	ldr	x8, [x8]
 	ldr	w8, [x8]
-	str	w8, [sp, #24]
-	str	wzr, [sp, #20]
-	b	LBB8_5
-LBB8_5:                                 ; =>This Inner Loop Header: Depth=1
-	ldr	x9, [sp, #8]                    ; 8-byte Folded Reload
-	ldr	w8, [sp, #20]
+	str	w8, [sp, #12]
+	str	wzr, [sp, #8]
+	b	LBB8_3
+LBB8_3:                                 ; =>This Inner Loop Header: Depth=1
+	ldr	x9, [sp]                        ; 8-byte Folded Reload
+	ldr	w8, [sp, #8]
 	ldr	w9, [x9, #16]
 	subs	w8, w8, w9
-	b.ge	LBB8_8
-	b	LBB8_6
-LBB8_6:                                 ;   in Loop: Header=BB8_5 Depth=1
-	ldr	x0, [sp, #8]                    ; 8-byte Folded Reload
+	b.ge	LBB8_6
+	b	LBB8_4
+LBB8_4:                                 ;   in Loop: Header=BB8_3 Depth=1
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
 	ldr	x8, [x0]
-	ldrsw	x9, [sp, #20]
+	ldrsw	x9, [sp, #8]
 	add	x1, x8, x9, lsl #2
 	ldr	x8, [x0]
-	ldr	w9, [sp, #20]
+	ldr	w9, [sp, #8]
 	add	w9, w9, #1
 	add	x2, x8, w9, sxtw #2
 	bl	__ZN5Queue4swapEPiS0_
-	ldr	x8, [sp, #8]                    ; 8-byte Folded Reload
-	ldr	x9, [x8]
-	ldr	w8, [sp, #20]
-	add	w10, w8, #1
-	mov	w8, #0
-	str	w8, [x9, w10, sxtw #2]
-	b	LBB8_7
-LBB8_7:                                 ;   in Loop: Header=BB8_5 Depth=1
-	ldr	w8, [sp, #20]
-	add	w8, w8, #1
-	str	w8, [sp, #20]
 	b	LBB8_5
-LBB8_8:
-	ldr	x9, [sp, #8]                    ; 8-byte Folded Reload
+LBB8_5:                                 ;   in Loop: Header=BB8_3 Depth=1
+	ldr	w8, [sp, #8]
+	add	w8, w8, #1
+	str	w8, [sp, #8]
+	b	LBB8_3
+LBB8_6:
+	ldr	x9, [sp]                        ; 8-byte Folded Reload
+	ldr	x10, [x9]
+	ldrsw	x11, [x9, #16]
+	mov	w8, #0
+	str	w8, [x10, x11, lsl #2]
 	ldr	w8, [x9, #16]
 	subs	w8, w8, #1
 	str	w8, [x9, #16]
-	b	LBB8_9
-LBB8_9:
-	ldr	w8, [sp, #24]
+	b	LBB8_7
+LBB8_7:
+	ldr	w8, [sp, #12]
 	stur	w8, [x29, #-4]
-	b	LBB8_10
-LBB8_10:
+	b	LBB8_8
+LBB8_8:
 	ldur	w0, [x29, #-4]
-	ldp	x29, x30, [sp, #48]             ; 16-byte Folded Reload
-	add	sp, sp, #64
+	ldp	x29, x30, [sp, #32]             ; 16-byte Folded Reload
+	add	sp, sp, #48
 	ret
 	.cfi_endproc
                                         ; -- End function
@@ -410,90 +393,46 @@ __ZN5Queue4swapEPiS0_:                  ; @_ZN5Queue4swapEPiS0_
 _main:                                  ; @main
 	.cfi_startproc
 ; %bb.0:
-	sub	sp, sp, #80
-	stp	x29, x30, [sp, #64]             ; 16-byte Folded Spill
-	add	x29, sp, #64
+	sub	sp, sp, #64
+	stp	x29, x30, [sp, #48]             ; 16-byte Folded Spill
+	add	x29, sp, #48
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
-	adrp	x8, __ZNSt3__14coutE@GOTPAGE
-	ldr	x8, [x8, __ZNSt3__14coutE@GOTPAGEOFF]
-	str	x8, [sp]                        ; 8-byte Folded Spill
-	adrp	x8, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGE
-	ldr	x8, [x8, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGEOFF]
-	str	x8, [sp, #8]                    ; 8-byte Folded Spill
 	mov	w8, #0
-	str	w8, [sp, #28]                   ; 4-byte Folded Spill
+	str	w8, [sp, #12]                   ; 4-byte Folded Spill
 	stur	wzr, [x29, #-4]
-	add	x0, sp, #32
-	str	x0, [sp, #16]                   ; 8-byte Folded Spill
-	mov	w1, #3
+	add	x0, sp, #16
+	str	x0, [sp]                        ; 8-byte Folded Spill
+	mov	w1, #5
 	bl	__ZN5QueueC1Ei
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
 	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
+	mov	w1, #2
+	bl	__ZN5Queue7enqueueEi
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
+	mov	w1, #3
+	bl	__ZN5Queue7enqueueEi
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
 	mov	w1, #10
 	bl	__ZN5Queue7enqueueEi
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
 	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	mov	w1, #20
-	bl	__ZN5Queue7enqueueEi
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	mov	w1, #30
-	bl	__ZN5Queue7enqueueEi
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
+	ldr	x0, [sp]                        ; 8-byte Folded Reload
 	bl	__ZN5Queue7dequeueEv
 	mov	x1, x0
-	ldr	x0, [sp]                        ; 8-byte Folded Reload
+	adrp	x0, __ZNSt3__14coutE@GOTPAGE
+	ldr	x0, [x0, __ZNSt3__14coutE@GOTPAGEOFF]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
+	adrp	x1, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGE
+	ldr	x1, [x1, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGEOFF]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7dequeueEv
-	mov	x1, x0
 	ldr	x0, [sp]                        ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
 	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7dequeueEv
-	mov	x1, x0
-	ldr	x0, [sp]                        ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7dequeueEv
-	mov	x1, x0
-	ldr	x0, [sp]                        ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7displayEv
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7dequeueEv
-	mov	x1, x0
-	ldr	x0, [sp]                        ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZN5Queue7displayEv
-	ldr	w0, [sp, #28]                   ; 4-byte Folded Reload
-	ldp	x29, x30, [sp, #64]             ; 16-byte Folded Reload
-	add	sp, sp, #80
+	ldr	w0, [sp, #12]                   ; 4-byte Folded Reload
+	ldp	x29, x30, [sp, #48]             ; 16-byte Folded Reload
+	add	sp, sp, #64
 	ret
 	.cfi_endproc
                                         ; -- End function
