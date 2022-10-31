@@ -24,7 +24,7 @@ _main:                                  ; @main
 	add	x1, x1, l_.str@PAGEOFF
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
 	mov	x1, #4
-	str	x1, [sp, #8]                    ; 8-byte Folded Spill
+	str	x1, [sp]                        ; 8-byte Folded Spill
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEm
 	ldur	x1, [x29, #-16]                 ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
@@ -41,7 +41,7 @@ _main:                                  ; @main
 	adrp	x1, l_.str.2@PAGE
 	add	x1, x1, l_.str.2@PAGEOFF
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
+	ldr	x1, [sp]                        ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEm
 	ldur	x1, [x29, #-16]                 ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
@@ -50,6 +50,7 @@ _main:                                  ; @main
 	add	x1, x1, l_.str.3@PAGEOFF
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
 	mov	x1, #8
+	str	x1, [sp, #8]                    ; 8-byte Folded Spill
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEm
 	ldur	x1, [x29, #-16]                 ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
@@ -57,13 +58,21 @@ _main:                                  ; @main
 	adrp	x1, l_.str.4@PAGE
 	add	x1, x1, l_.str.4@PAGEOFF
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
-	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEm
 	ldur	x1, [x29, #-16]                 ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
 	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	adrp	x1, l_.str.5@PAGE
 	add	x1, x1, l_.str.5@PAGEOFF
+	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
+	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEm
+	ldur	x1, [x29, #-16]                 ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
+	adrp	x1, l_.str.6@PAGE
+	add	x1, x1, l_.str.6@PAGEOFF
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
 	mov	x1, #24
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEm
@@ -1671,9 +1680,12 @@ l_.str.3:                               ; @.str.3
 	.asciz	"Size of Long: "
 
 l_.str.4:                               ; @.str.4
-	.asciz	"Size of Boolean: "
+	.asciz	"Size of Double: "
 
 l_.str.5:                               ; @.str.5
+	.asciz	"Size of Boolean: "
+
+l_.str.6:                               ; @.str.6
 	.asciz	"Size of String: "
 
 .subsections_via_symbols
