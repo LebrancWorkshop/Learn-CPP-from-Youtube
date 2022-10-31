@@ -9,7 +9,7 @@ int main()
 	queue.enqueue(3);
 	queue.enqueue(10);
 	queue.display();
-	std::cout << queue.dequeue() << std::endl;
+	std::cout << queue.dequeue() << std::endl; // Use cout to print the dequeue value to the console. 
 	queue.display();
 	return 0;
 }
