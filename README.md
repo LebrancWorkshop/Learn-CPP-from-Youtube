@@ -16,7 +16,7 @@ Learning C++ from many great resources that you can find and learn for free on Y
 
 ## How to run
 
-It's very easy for you to run the code on this repository, I've already written a shell script for you to run  
+It's very easy for you to run the code on this repository, I've already written a [shell script (main.sh)](https://github.com/LebrancWorkshop/Learn-CPP-from-Youtube/blob/main/main.sh) for you to run  
 
 And it will contain the result of both C++ Code and generate Assembly Code from C++ Code. (In case of my default Assembly code in the repository, it's an ARM64 Assembly Code)
 
