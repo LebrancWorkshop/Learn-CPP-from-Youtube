@@ -44,9 +44,9 @@ LBB0_4:
 	ret
 	.cfi_endproc
                                         ; -- End function
-	.globl	_main                           ; -- Begin function main
+	.globl	__Z11fibo_memoryi               ; -- Begin function _Z11fibo_memoryi
 	.p2align	2
-_main:                                  ; @main
+__Z11fibo_memoryi:                      ; @_Z11fibo_memoryi
 	.cfi_startproc
 ; %bb.0:
 	sub	sp, sp, #32
@@ -55,21 +55,113 @@ _main:                                  ; @main
 	.cfi_def_cfa w29, 16
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
+	str	w0, [sp, #8]
+	ldr	w8, [sp, #8]
+	cbz	w8, LBB1_2
+	b	LBB1_1
+LBB1_1:
+	ldr	w8, [sp, #8]
+	subs	w8, w8, #1
+	b.ne	LBB1_3
+	b	LBB1_2
+LBB1_2:
+	ldrsw	x10, [sp, #8]
+	adrp	x9, _memory_array@PAGE
+	add	x9, x9, _memory_array@PAGEOFF
+	mov	w8, #1
+	str	w8, [x9, x10, lsl #2]
+	stur	w8, [x29, #-4]
+	b	LBB1_8
+LBB1_3:
+	ldr	w8, [sp, #8]
+	subs	w9, w8, #2
+	adrp	x8, _memory_array@PAGE
+	add	x8, x8, _memory_array@PAGEOFF
+	ldr	w8, [x8, w9, sxtw #2]
+	cbnz	w8, LBB1_5
+	b	LBB1_4
+LBB1_4:
+	ldr	w8, [sp, #8]
+	subs	w0, w8, #2
+	bl	__Z11fibo_memoryi
+	ldr	w8, [sp, #8]
+	subs	w9, w8, #2
+	adrp	x8, _memory_array@PAGE
+	add	x8, x8, _memory_array@PAGEOFF
+	str	w0, [x8, w9, sxtw #2]
+	b	LBB1_5
+LBB1_5:
+	ldr	w8, [sp, #8]
+	subs	w9, w8, #1
+	adrp	x8, _memory_array@PAGE
+	add	x8, x8, _memory_array@PAGEOFF
+	ldr	w8, [x8, w9, sxtw #2]
+	cbnz	w8, LBB1_7
+	b	LBB1_6
+LBB1_6:
+	ldr	w8, [sp, #8]
+	subs	w0, w8, #1
+	bl	__Z11fibo_memoryi
+	ldr	w8, [sp, #8]
+	subs	w9, w8, #1
+	adrp	x8, _memory_array@PAGE
+	add	x8, x8, _memory_array@PAGEOFF
+	str	w0, [x8, w9, sxtw #2]
+	b	LBB1_7
+LBB1_7:
+	ldr	w8, [sp, #8]
+	subs	w8, w8, #2
+	adrp	x9, _memory_array@PAGE
+	add	x9, x9, _memory_array@PAGEOFF
+	ldr	w8, [x9, w8, sxtw #2]
+	ldr	w10, [sp, #8]
+	subs	w10, w10, #1
+	ldr	w9, [x9, w10, sxtw #2]
+	add	w8, w8, w9
+	stur	w8, [x29, #-4]
+	b	LBB1_8
+LBB1_8:
+	ldur	w0, [x29, #-4]
+	ldp	x29, x30, [sp, #16]             ; 16-byte Folded Reload
+	add	sp, sp, #32
+	ret
+	.cfi_endproc
+                                        ; -- End function
+	.globl	_main                           ; -- Begin function main
+	.p2align	2
+_main:                                  ; @main
+	.cfi_startproc
+; %bb.0:
+	sub	sp, sp, #48
+	stp	x29, x30, [sp, #32]             ; 16-byte Folded Spill
+	add	x29, sp, #32
+	.cfi_def_cfa w29, 16
+	.cfi_offset w30, -8
+	.cfi_offset w29, -16
 	mov	w8, #0
-	str	w8, [sp, #8]                    ; 4-byte Folded Spill
+	stur	w8, [x29, #-8]                  ; 4-byte Folded Spill
 	stur	wzr, [x29, #-4]
-	mov	w0, #3
-	bl	__Z9fibonaccii
+	mov	w0, #10
+	bl	__Z11fibo_memoryi
 	mov	x1, x0
 	adrp	x0, __ZNSt3__14coutE@GOTPAGE
 	ldr	x0, [x0, __ZNSt3__14coutE@GOTPAGEOFF]
+	str	x0, [sp, #8]                    ; 8-byte Folded Spill
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
 	adrp	x1, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGE
 	ldr	x1, [x1, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGEOFF]
+	str	x1, [sp, #16]                   ; 8-byte Folded Spill
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	w0, [sp, #8]                    ; 4-byte Folded Reload
-	ldp	x29, x30, [sp, #16]             ; 16-byte Folded Reload
-	add	sp, sp, #32
+	mov	w0, #3
+	bl	__Z9fibonaccii
+	mov	x1, x0
+	ldr	x0, [sp, #8]                    ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
+	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldur	w0, [x29, #-8]                  ; 4-byte Folded Reload
+	ldp	x29, x30, [sp, #32]             ; 16-byte Folded Reload
+	add	sp, sp, #48
 	ret
 	.cfi_endproc
                                         ; -- End function
@@ -150,16 +242,16 @@ Ltmp0:
 	bl	__ZNSt3__1L9use_facetINS_5ctypeIcEEEERKT_RKNS_6localeE
 	str	x0, [sp, #16]                   ; 8-byte Folded Spill
 Ltmp1:
-	b	LBB4_1
-LBB4_1:
+	b	LBB5_1
+LBB5_1:
 	ldr	x0, [sp, #16]                   ; 8-byte Folded Reload
 	ldursb	w1, [x29, #-9]
 Ltmp2:
 	bl	__ZNKSt3__15ctypeIcE5widenEc
 	str	w0, [sp, #4]                    ; 4-byte Folded Spill
 Ltmp3:
-	b	LBB4_2
-LBB4_2:
+	b	LBB5_2
+LBB5_2:
 	sub	x0, x29, #24
 	bl	__ZNSt3__16localeD1Ev
 	ldr	w8, [sp, #4]                    ; 4-byte Folded Reload
@@ -167,7 +259,7 @@ LBB4_2:
 	ldp	x29, x30, [sp, #64]             ; 16-byte Folded Reload
 	add	sp, sp, #80
 	ret
-LBB4_3:
+LBB5_3:
 Ltmp4:
 	mov	x8, x1
 	str	x0, [sp, #32]
@@ -176,20 +268,20 @@ Ltmp5:
 	sub	x0, x29, #24
 	bl	__ZNSt3__16localeD1Ev
 Ltmp6:
-	b	LBB4_4
-LBB4_4:
-	b	LBB4_5
-LBB4_5:
+	b	LBB5_4
+LBB5_4:
+	b	LBB5_5
+LBB5_5:
 	ldr	x0, [sp, #32]
 	bl	__Unwind_Resume
-LBB4_6:
+LBB5_6:
 Ltmp7:
 	bl	___clang_call_terminate
 Lfunc_end0:
 	.cfi_endproc
 	.section	__TEXT,__gcc_except_tab
 	.p2align	2
-GCC_except_table4:
+GCC_except_table5:
 Lexception0:
 	.byte	255                             ; @LPStart Encoding = omit
 	.byte	155                             ; @TType Encoding = indirect pcrel sdata4
@@ -282,4 +374,6 @@ ___clang_call_terminate:                ; @__clang_call_terminate
 	bl	___cxa_begin_catch
 	bl	__ZSt9terminatev
                                         ; -- End function
+	.globl	_memory_array                   ; @memory_array
+.zerofill __DATA,__common,_memory_array,4000,2
 .subsections_via_symbols
