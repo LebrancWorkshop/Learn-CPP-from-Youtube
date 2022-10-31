@@ -21,11 +21,21 @@
 
 int main()
 {
+	// data => normal variable.
+	// 10 => normal value. 
+	// &data => address of normal variable (aka. address of "data" variable).
+	// *address => pointer that can access to get the normal value by using address of normal variable. 
+	// address => pointer variable in the non-pointer mode. It'll be the address of the address of normal variable we assign. 
+
 	int data = 10;
 	int *address = &data; // If we want to assign address of variable to the left side variable, we must denote the left variable to be the pointer variable.
-	std::cout << data << std::endl;
-	std::cout << address << std::endl;
-	std::cout << *address << std::endl;
-	std::cout << &data << std::endl;
+	
+	std::cout << data << std::endl; // Give us the value of the normal variable. // Output: 10 
+	std::cout << &data << std::endl; // Give us the address of the normal variable. // Output: 0x16d916cc8
+	
+	std::cout << address << std::endl; // Give us the non-pointer mode of pointer that store the address of the normal variable. // Output: 0x16d916cc8
+	std::cout << *address << std::endl; // Access to get the value of the address of the variable. // Output: 10 
+	
+	// Note: If we compile and run the program again, the address will be different.
 	return 0;
 }

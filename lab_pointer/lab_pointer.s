@@ -29,6 +29,11 @@ _main:                                  ; @main
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
 	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldr	x1, [sp]                        ; 8-byte Folded Reload
+	ldr	x0, [sp, #8]                    ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
+	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
 	ldr	x0, [sp, #8]                    ; 8-byte Folded Reload
 	ldur	x1, [x29, #-16]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
@@ -38,11 +43,6 @@ _main:                                  ; @main
 	ldur	x8, [x29, #-16]
 	ldr	w1, [x8]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x1, [sp]                        ; 8-byte Folded Reload
-	ldr	x0, [sp, #8]                    ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
 	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
 	ldur	w0, [x29, #-20]                 ; 4-byte Folded Reload
