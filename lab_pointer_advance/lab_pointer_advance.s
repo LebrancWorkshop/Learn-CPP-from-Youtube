@@ -13,76 +13,100 @@ _main:                                  ; @main
 	.cfi_offset w29, -16
 	adrp	x0, __ZNSt3__14coutE@GOTPAGE
 	ldr	x0, [x0, __ZNSt3__14coutE@GOTPAGEOFF]
-	str	x0, [sp, #32]                   ; 8-byte Folded Spill
+	str	x0, [sp, #24]                   ; 8-byte Folded Spill
 	adrp	x8, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGE
 	ldr	x8, [x8, __ZNSt3__14endlIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_@GOTPAGEOFF]
-	str	x8, [sp, #40]                   ; 8-byte Folded Spill
+	str	x8, [sp, #32]                   ; 8-byte Folded Spill
 	mov	w8, #0
-	stur	w8, [x29, #-28]                 ; 4-byte Folded Spill
+	stur	w8, [x29, #-36]                 ; 4-byte Folded Spill
 	stur	wzr, [x29, #-4]
-	sub	x8, x29, #8
+	sub	x9, x29, #8
+	str	x9, [sp]                        ; 8-byte Folded Spill
+	mov	w8, #20
+	stur	w8, [x29, #-8]
+	sub	x8, x29, #16
 	str	x8, [sp, #8]                    ; 8-byte Folded Spill
-	mov	w9, #20
-	stur	w9, [x29, #-8]
-	sub	x9, x29, #16
-	str	x9, [sp, #16]                   ; 8-byte Folded Spill
-	stur	x8, [x29, #-16]
-	ldur	x8, [x29, #-16]
-	stur	x8, [x29, #-24]
+	stur	x9, [x29, #-16]
+	ldur	x9, [x29, #-16]
+	stur	x9, [x29, #-24]
+	stur	x8, [x29, #-32]
 	ldur	w1, [x29, #-8]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x1, [sp]                        ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	adrp	x1, l_.str@PAGE
 	add	x1, x1, l_.str@PAGEOFF
-	str	x1, [sp, #24]                   ; 8-byte Folded Spill
+	str	x1, [sp, #16]                   ; 8-byte Folded Spill
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	ldur	x1, [x29, #-16]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	ldur	x8, [x29, #-16]
 	ldr	w1, [x8]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	ldur	x1, [x29, #-16]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldr	x1, [sp, #8]                    ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
 	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
-	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x1, [sp, #24]                   ; 8-byte Folded Reload
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	ldur	x1, [x29, #-24]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldr	x0, [sp, #32]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
 	ldur	x8, [x29, #-24]
 	ldr	w1, [x8]
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
-	ldr	x1, [sp, #40]                   ; 8-byte Folded Reload
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
 	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
-	ldur	w0, [x29, #-28]                 ; 4-byte Folded Reload
+	ldr	x1, [sp, #16]                   ; 8-byte Folded Reload
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
+	ldur	x1, [x29, #-32]
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
+	ldur	x8, [x29, #-32]
+	ldr	x1, [x8]
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPKv
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldr	x0, [sp, #24]                   ; 8-byte Folded Reload
+	ldur	x8, [x29, #-32]
+	ldr	x8, [x8]
+	ldr	w1, [x8]
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
+	ldr	x1, [sp, #32]                   ; 8-byte Folded Reload
+	bl	__ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEPFRS3_S4_E
+	ldur	w0, [x29, #-36]                 ; 4-byte Folded Reload
 	ldp	x29, x30, [sp, #80]             ; 16-byte Folded Reload
 	add	sp, sp, #96
 	ret
