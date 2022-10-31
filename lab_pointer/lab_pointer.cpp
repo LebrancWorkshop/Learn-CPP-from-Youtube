@@ -41,7 +41,7 @@ int main()
 	std::cout << "--------" << std::endl;
 
 	int temp = 20; // Create a new normal variable and assign the another normal value to it.
-	address = &temp; // Assign the new address to the pointer variable.
+	address = &temp; // Assign the new address to the pointer variable. (You can do this because compiler is already known that the variable is pointer variable). 
 
 	std::cout << address << std::endl; // Output: 0x16f942cbc
 	std::cout << *address << std::endl; // Output: 20 
